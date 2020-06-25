@@ -1,17 +1,15 @@
 package pl.kfrak.springbootdemo.ingredient.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import pl.kfrak.springbootdemo.dish.domain.Dish;
+import pl.kfrak.springbootdemo.dishingredient.DishIngredient;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@Getter
-@Setter
-@Entity(name = "ingredient")
-public class Ingredient {
+@Entity
+@Table(name = "ingredient")
+public class Ingredient implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +18,13 @@ public class Ingredient {
     @Column(name = "ingredient_name")
     private String name;
 
-    @ManyToMany (mappedBy = "ingredients", cascade = CascadeType.ALL)
-    private Set<Dish> dishes = new HashSet<>();
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+    private Set<DishIngredient> dishIngredients = new HashSet<>();
 
+    public Ingredient(String name){
+        this.name = name;
+    }
+
+    public Ingredient() {
+    }
 }
