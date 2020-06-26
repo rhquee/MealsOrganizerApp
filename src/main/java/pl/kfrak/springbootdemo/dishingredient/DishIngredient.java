@@ -1,23 +1,26 @@
 package pl.kfrak.springbootdemo.dishingredient;
 
-import com.google.common.base.Objects;
 import pl.kfrak.springbootdemo.dish.domain.Dish;
 import pl.kfrak.springbootdemo.ingredient.domain.Ingredient;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name = "dish_ingredient")
+@Entity(name="dish_ingredient")
 public class DishIngredient implements Serializable {
 
     @Id
+    @Column(name = "id")
+    private Integer id;
+
+    @Id
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "dish_id")
     private Dish dish;
 
     @Id
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "ingredient_id")
     private Ingredient ingredient;
 
     private String quantity;
@@ -25,7 +28,8 @@ public class DishIngredient implements Serializable {
     public DishIngredient() {
     }
 
-    public DishIngredient(Ingredient ingredient, String quantity) {
+    public DishIngredient(Dish dish, Ingredient ingredient, String quantity) {
+        this.dish = dish;
         this.ingredient = ingredient;
         this.quantity = quantity;
     }
@@ -52,20 +56,5 @@ public class DishIngredient implements Serializable {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DishIngredient)) return false;
-        DishIngredient that = (DishIngredient) o;
-        return Objects.equal(dish, that.dish) &&
-                Objects.equal(ingredient, that.ingredient) &&
-                Objects.equal(quantity, that.quantity);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(dish, ingredient, quantity);
     }
 }
