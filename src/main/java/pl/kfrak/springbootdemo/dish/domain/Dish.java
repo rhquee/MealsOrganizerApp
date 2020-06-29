@@ -1,6 +1,6 @@
 package pl.kfrak.springbootdemo.dish.domain;
 
-import pl.kfrak.springbootdemo.dishingredient.DishIngredient;
+import pl.kfrak.springbootdemo.dishingredient.Recipe;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -18,7 +18,7 @@ public class Dish {
     private String dishName;
 
     @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
-    private Set<DishIngredient> dishIngredient;
+    private Set<Recipe> recipe;
 
     public Dish() {
     }
@@ -39,12 +39,12 @@ public class Dish {
         this.dishName = dishName;
     }
 
-    public Set<DishIngredient> getDishIngredient() {
-        return dishIngredient;
+    public Set<Recipe> getRecipe() {
+        return recipe;
     }
 
-    public void setDishIngredient(Set<DishIngredient> dishIngredient) {
-        this.dishIngredient = dishIngredient;
+    public void setRecipe(Set<Recipe> recipe) {
+        this.recipe = recipe;
     }
 
 }

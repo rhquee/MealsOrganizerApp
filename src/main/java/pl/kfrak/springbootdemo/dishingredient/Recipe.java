@@ -7,31 +7,40 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity(name="dish_ingredient")
-public class DishIngredient implements Serializable {
+public class Recipe implements Serializable {
 
     @Id
-    @Column(name = "id")
     private Integer id;
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "dish_id")
+    @JoinColumn(name = "dish_id", referencedColumnName = "dish_id")
     private Dish dish;
 
-    @Id
     @ManyToOne
-    @JoinColumn(name = "ingredient_id")
+    @JoinColumn(name = "ingredient_id", referencedColumnName = "ingredient_id")
     private Ingredient ingredient;
 
     private String quantity;
 
-    public DishIngredient() {
+    private String description;
+
+    public Recipe() {
     }
 
-    public DishIngredient(Dish dish, Ingredient ingredient, String quantity) {
+    public Recipe(Integer id, Dish dish, Ingredient ingredient, String quantity, String description) {
+        this.id = id;
         this.dish = dish;
         this.ingredient = ingredient;
         this.quantity = quantity;
+        this.description = description;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Dish getDish() {
@@ -56,5 +65,13 @@ public class DishIngredient implements Serializable {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

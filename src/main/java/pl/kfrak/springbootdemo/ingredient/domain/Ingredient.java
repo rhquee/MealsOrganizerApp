@@ -1,7 +1,6 @@
 package pl.kfrak.springbootdemo.ingredient.domain;
 
-import lombok.Data;
-import pl.kfrak.springbootdemo.dishingredient.DishIngredient;
+import pl.kfrak.springbootdemo.dishingredient.Recipe;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,7 +19,7 @@ public class Ingredient implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
-    private Set<DishIngredient> dishIngredient = new HashSet<>();
+    private Set<Recipe> recipe = new HashSet<>();
 
     public Ingredient() {
     }
@@ -41,11 +40,11 @@ public class Ingredient implements Serializable {
         this.name = name;
     }
 
-    public Set<DishIngredient> getDishIngredient() {
-        return dishIngredient;
+    public Set<Recipe> getRecipe() {
+        return recipe;
     }
 
-    public void setDishIngredient(Set<DishIngredient> dishIngredient) {
-        this.dishIngredient = dishIngredient;
+    public void setRecipe(Set<Recipe> recipe) {
+        this.recipe = recipe;
     }
 }
