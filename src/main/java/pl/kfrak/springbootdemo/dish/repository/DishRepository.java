@@ -15,4 +15,5 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
     @Query("select d from dish d")
     List<Dish> findAll();
 
+
 }

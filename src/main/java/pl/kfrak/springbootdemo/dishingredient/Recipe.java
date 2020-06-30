@@ -22,17 +22,19 @@ public class Recipe implements Serializable {
 
     private String quantity;
 
-    private String description;
+    @Column(name = "measure_type")
+    @Enumerated(value = EnumType.STRING)
+    private MeasureType measureType;
 
     public Recipe() {
     }
 
-    public Recipe(Integer id, Dish dish, Ingredient ingredient, String quantity, String description) {
+    public Recipe(Integer id, Dish dish, Ingredient ingredient, String quantity, MeasureType measureType) {
         this.id = id;
         this.dish = dish;
         this.ingredient = ingredient;
         this.quantity = quantity;
-        this.description = description;
+        this.measureType = measureType;
     }
 
     public Integer getId() {
@@ -67,11 +69,11 @@ public class Recipe implements Serializable {
         this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
+    public MeasureType getMeasureType() {
+        return measureType;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setMeasureType(MeasureType measureType) {
+        this.measureType = measureType;
     }
 }

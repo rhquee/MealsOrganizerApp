@@ -1,18 +1,18 @@
 package pl.kfrak.springbootdemo.dish.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.kfrak.springbootdemo.dish.repository.DishRepository;
 import pl.kfrak.springbootdemo.dish.domain.Dish;
 
-import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @Transactional
-public class DishServiceImpl {
+public class DishService {
 
-    @Resource
+    @Autowired
     private DishRepository dishRepository;
 
     public List<Dish> findAll() {
@@ -24,7 +24,7 @@ public class DishServiceImpl {
     }
 
     public Dish insertDish(Dish dish) {
-        dishRepository.save(dish);
+        dishRepository.saveAndFlush(dish);
         return dish;
     }
 }

@@ -1,20 +1,20 @@
 package pl.kfrak.springbootdemo.dish.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.kfrak.springbootdemo.dish.domain.Dish;
-import pl.kfrak.springbootdemo.dish.service.DishServiceImpl;
+import pl.kfrak.springbootdemo.dish.service.DishService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 @RequestMapping("/dish")
 public class DishController {
 
-    @Resource
-    DishServiceImpl dishService;
+    @Autowired
+    DishService dishService;
 
     @GetMapping(value = "/{dishId}")
     public Dish findDishById (@PathVariable Integer dishId){
@@ -26,7 +26,7 @@ public class DishController {
         return dishService.findAll();
     }
 
-    @PostMapping(value = "/createDish")
+    @PostMapping(value = "/create")
     public ResponseEntity<Dish> addDish(@RequestBody Dish dish){
         Dish response = dishService.insertDish(dish);
         return new ResponseEntity<>(response, HttpStatus.OK);
