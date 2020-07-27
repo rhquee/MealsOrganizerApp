@@ -11,5 +11,6 @@ import java.util.List;
 public interface IngredientRepository extends JpaRepository<Ingredient, Integer> {
 
     Ingredient findIngredientById (@Param("ingredientId") Integer ingredientId);
+    boolean existsByName(@Param("ingredientName") String ingredientName);
     List<Ingredient> findAll();
 }

@@ -23,6 +23,22 @@ public class DishService {
         return dishRepository.findDishById(dishId);
     }
 
+    public boolean checkIfDishExists(String dishName){
+        if(dishRepository.existsByDishName(dishName)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public void insertDishIfNotExists(Dish dish){
+        if(checkIfDishExists(dish.getDishName())){
+            System.out.println("dish arleady in db");
+        }else{
+            insertDish(dish);
+        }
+    }
+
     public Dish insertDish(Dish dish) {
         dishRepository.saveAndFlush(dish);
         return dish;

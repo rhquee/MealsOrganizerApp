@@ -1,6 +1,7 @@
 package pl.kfrak.springbootdemo.dishingredient;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +26,15 @@ public class RecipeController {
 
     @PostMapping(value = "/create")
     public ResponseEntity<Recipe> addRecipe(@RequestBody Recipe recipe){
-//        Recipe response = recipeService.insertRecipe(recipe);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-        return ResponseEntity.ok().body(this.recipeService.insertRecipe(recipe));
+        Recipe response = recipeService.insertRecipe(recipe);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/add")
+    public ResponseEntity<Recipe> addIngredientsToRecipe(@RequestBody Recipe recipe){
+
+        Recipe response = recipeService.addIngredientsToRecipe(recipe);
+        System.out.println(response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

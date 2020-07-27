@@ -7,7 +7,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name="ingredient")
+@Entity
+@Table(name="ingredient")
 public class Ingredient implements Serializable {
 
     @Id
@@ -18,7 +19,7 @@ public class Ingredient implements Serializable {
     @Column(name = "ingredient_name")
     private String name;
 
-    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ingredientId", cascade = CascadeType.ALL)
     private Set<Recipe> recipe = new HashSet<>();
 
     public Ingredient() {

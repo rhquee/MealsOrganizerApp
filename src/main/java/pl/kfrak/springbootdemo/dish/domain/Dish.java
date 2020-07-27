@@ -3,16 +3,18 @@ package pl.kfrak.springbootdemo.dish.domain;
 import pl.kfrak.springbootdemo.dishingredient.Recipe;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 
-@Entity(name="dish")
-public class Dish {
+@Entity
+@Table(name="dish")
+public class Dish implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "dish_id")
-    private Integer dishId;
+    private Integer id;
 
     @Column(name = "dish_name")
     private String dishName;
@@ -23,26 +25,26 @@ public class Dish {
     @Column(name = "notes")
     private String notes;
 
-    @OneToMany(mappedBy = "dish", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "dishId", cascade = CascadeType.ALL)
     private Set<Recipe> recipe;
 
     public Dish() {
     }
 
-    public Dish(Integer dishId, String dishName, String dishDescription, String notes, Set<Recipe> recipe) {
-        this.dishId = dishId;
+    public Dish(Integer id, String dishName, String dishDescription, String notes, Set<Recipe> recipe) {
+        this.id = id;
         this.dishName = dishName;
         this.dishDescription = dishDescription;
         this.notes = notes;
         this.recipe = recipe;
     }
 
-    public Integer getDishId() {
-        return dishId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setDishId(Integer dishId) {
-        this.dishId = dishId;
+    public void setId(Integer dishId) {
+        this.id = dishId;
     }
 
     public String getDishName() {

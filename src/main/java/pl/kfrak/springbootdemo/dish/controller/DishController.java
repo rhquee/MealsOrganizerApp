@@ -31,4 +31,9 @@ public class DishController {
         Dish response = dishService.insertDish(dish);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @PostMapping(value = "/add")
+    public void addDishIfNotExists(@RequestBody Dish dish){
+        dishService.insertDishIfNotExists(dish);
+    }
 }

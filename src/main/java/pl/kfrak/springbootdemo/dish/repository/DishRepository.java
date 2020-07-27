@@ -9,11 +9,13 @@ import java.util.List;
 
 public interface DishRepository extends JpaRepository<Dish, Integer> {
 
-    @Query("select d from dish d where d.dishId = :dishId")
+   // @Query("select d from dish d where d.dishId = :dishId")
     Dish findDishById (@Param("dishId") Integer dishId);
 
-    @Query("select d from dish d")
+    //@Query("select d from dish d")
     List<Dish> findAll();
+
+    boolean existsByDishName(@Param("dishName")String dishName);
 
 
 }

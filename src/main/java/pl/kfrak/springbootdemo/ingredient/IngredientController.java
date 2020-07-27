@@ -1,7 +1,6 @@
 package pl.kfrak.springbootdemo.ingredient;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,7 @@ public class IngredientController {
 
     @GetMapping(value = "/{ingredientId}")
     public Ingredient findIngredientById(@PathVariable Integer ingredientId){
-        return ingredientService.findDishById(ingredientId);
+        return ingredientService.findIngredientById(ingredientId);
     }
 
     @GetMapping(value = "/all")
@@ -31,6 +30,11 @@ public class IngredientController {
     public ResponseEntity<Ingredient> addIngredient(@RequestBody Ingredient ingredient){
         Ingredient response = ingredientService.insertIngredient(ingredient);
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/add")
+    public void addIngredientIfNotExists(@RequestBody Ingredient ingredient){
+        ingredientService.insertIngredientIfNotExists(ingredient);
     }
 
 }

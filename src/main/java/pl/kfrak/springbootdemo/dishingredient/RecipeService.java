@@ -27,4 +27,9 @@ public class RecipeService {
         return recipe;
     }
 
+    Recipe addIngredientsToRecipe(Recipe recipe){
+        recipeRepository.saveAndFlush(recipe);
+        return recipe;
+    }
+
 }

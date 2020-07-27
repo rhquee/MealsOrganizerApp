@@ -6,19 +6,23 @@ import pl.kfrak.springbootdemo.ingredient.domain.Ingredient;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name="dish_ingredient")
+@Entity
+@Table(name="dish_ingredient")
 public class Recipe implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
-    @ManyToOne
+//    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dish_id", referencedColumnName = "dish_id")
-    private Dish dish;
+    private Dish dishId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ingredient_id", referencedColumnName = "ingredient_id")
-    private Ingredient ingredient;
+    private Ingredient ingredientId;
 
     private String quantity;
 
@@ -29,10 +33,18 @@ public class Recipe implements Serializable {
     public Recipe() {
     }
 
-    public Recipe(Integer id, Dish dish, Ingredient ingredient, String quantity, MeasureType measureType) {
+//    public Recipe(Integer id, Dish dish, Ingredient ingredient, String quantity, MeasureType measureType) {
+//        this.id = id;
+//        this.dish = dish;
+//        this.ingredient = ingredient;
+//        this.quantity = quantity;
+//        this.measureType = measureType;
+//    }
+
+    public Recipe(Integer id, Dish dishId, Ingredient ingredientId, String quantity, MeasureType measureType) {
         this.id = id;
-        this.dish = dish;
-        this.ingredient = ingredient;
+        this.dishId = dishId;
+        this.ingredientId = ingredientId;
         this.quantity = quantity;
         this.measureType = measureType;
     }
@@ -45,20 +57,20 @@ public class Recipe implements Serializable {
         this.id = id;
     }
 
-    public Dish getDish() {
-        return dish;
+    public Dish getDishId() {
+        return dishId;
     }
 
-    public void setDish(Dish dish) {
-        this.dish = dish;
+    public void setDishId(Dish dishId) {
+        this.dishId = dishId;
     }
 
-    public Ingredient getIngredient() {
-        return ingredient;
+    public Ingredient getIngredientId() {
+        return ingredientId;
     }
 
-    public void setIngredient(Ingredient ingredient) {
-        this.ingredient = ingredient;
+    public void setIngredientId(Ingredient ingredientId) {
+        this.ingredientId = ingredientId;
     }
 
     public String getQuantity() {
@@ -75,5 +87,16 @@ public class Recipe implements Serializable {
 
     public void setMeasureType(MeasureType measureType) {
         this.measureType = measureType;
+    }
+
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", dishId=" + dishId +
+                ", ingredientId=" + ingredientId +
+                ", quantity='" + quantity + '\'' +
+                ", measureType=" + measureType +
+                '}';
     }
 }
