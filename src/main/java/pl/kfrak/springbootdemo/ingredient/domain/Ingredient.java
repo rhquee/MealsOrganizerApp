@@ -1,14 +1,17 @@
 package pl.kfrak.springbootdemo.ingredient.domain;
 
-import pl.kfrak.springbootdemo.dishingredient.Recipe;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import pl.kfrak.springbootdemo.dish_ingredient.Recipe;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name="ingredient")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class Ingredient implements Serializable {
 
     @Id
@@ -20,7 +23,10 @@ public class Ingredient implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "ingredientId", cascade = CascadeType.ALL)
-    private Set<Recipe> recipe = new HashSet<>();
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
+    @JsonIdentityReference(alwaysAsId = true)
+//    @JsonManagedReference
+    private Set<Recipe> recipe;
 
     public Ingredient() {
     }

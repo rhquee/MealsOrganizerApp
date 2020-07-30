@@ -1,4 +1,4 @@
-package pl.kfrak.springbootdemo.dishingredient;
+package pl.kfrak.springbootdemo.dish_ingredient;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

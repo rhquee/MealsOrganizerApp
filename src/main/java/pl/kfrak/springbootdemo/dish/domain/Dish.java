@@ -1,6 +1,7 @@
 package pl.kfrak.springbootdemo.dish.domain;
 
-import pl.kfrak.springbootdemo.dishingredient.Recipe;
+import com.fasterxml.jackson.annotation.*;
+import pl.kfrak.springbootdemo.dish_ingredient.Recipe;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,6 +10,8 @@ import java.util.Set;
 
 @Entity
 @Table(name="dish")
+//@JsonIdentityInfo(generator = ObjectIdGenerator.IdKey.class, property = "@id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
 public class Dish implements Serializable {
 
     @Id
@@ -26,6 +29,9 @@ public class Dish implements Serializable {
     private String notes;
 
     @OneToMany(mappedBy = "dishId", cascade = CascadeType.ALL)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
+    @JsonIdentityReference(alwaysAsId = true)
+//    @JsonManagedReference
     private Set<Recipe> recipe;
 
     public Dish() {
