@@ -1,4 +1,4 @@
-package pl.kfrak.springbootdemo.dish_ingredient;
+package pl.kfrak.springbootdemo.recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

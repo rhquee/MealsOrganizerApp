@@ -3,7 +3,7 @@ package pl.kfrak.springbootdemo.ingredient.domain;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import pl.kfrak.springbootdemo.dish_ingredient.Recipe;
+import pl.kfrak.springbootdemo.recipe.Recipe;
 
 import javax.persistence.*;
 import java.io.Serializable;

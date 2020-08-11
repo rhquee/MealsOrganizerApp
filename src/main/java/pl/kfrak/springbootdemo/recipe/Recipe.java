@@ -1,6 +1,7 @@
-package pl.kfrak.springbootdemo.dish_ingredient;
+package pl.kfrak.springbootdemo.recipe;
 
 import com.fasterxml.jackson.annotation.*;
+import pl.kfrak.springbootdemo.assignedRecipe.AssignedRecipe;
 import pl.kfrak.springbootdemo.dish.domain.Dish;
 import pl.kfrak.springbootdemo.ingredient.domain.Ingredient;
 
@@ -9,13 +10,13 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name="dish_ingredient")
+@Table(name="recipe")
 //@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class, property="id")
 public class Recipe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "recipe_id")
     private Integer id;
 
     //@ManyToOne(cascade=CascadeType.ALL)
@@ -41,6 +42,8 @@ public class Recipe implements Serializable {
     private MeasureType measureType;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
+    @JsonIdentityReference(alwaysAsId = true)
     private Set<AssignedRecipe> assignedRecipe;
 
     public Recipe() {

@@ -1,7 +1,7 @@
 package pl.kfrak.springbootdemo.dish.domain;
 
 import com.fasterxml.jackson.annotation.*;
-import pl.kfrak.springbootdemo.dish_ingredient.Recipe;
+import pl.kfrak.springbootdemo.recipe.Recipe;
 
 import javax.persistence.*;
 import java.io.Serializable;

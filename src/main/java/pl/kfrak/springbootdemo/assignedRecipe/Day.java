@@ -1,22 +1,30 @@
-package pl.kfrak.springbootdemo.dish_ingredient;
+package pl.kfrak.springbootdemo.assignedRecipe;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import pl.kfrak.springbootdemo.assignedRecipe.AssignedRecipe;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "day")
-public class Day {
+@Table(name = "dayOfWeek")
+public class Day implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "day_id")
+    private Integer id;
 
     @Column(name = "day_name")
     //@Enumerated(value = EnumType.STRING)
     private String dayName;
 
     @OneToMany(mappedBy = "day", cascade = CascadeType.ALL)
+    @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
+    @JsonIdentityReference(alwaysAsId = true)
     private Set<AssignedRecipe> assignedRecipe;
 
     public Day() {
@@ -28,11 +36,11 @@ public class Day {
         this.assignedRecipe = assignedRecipe;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
