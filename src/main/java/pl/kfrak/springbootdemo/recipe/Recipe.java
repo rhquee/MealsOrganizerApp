@@ -41,7 +41,7 @@ public class Recipe implements Serializable {
     @Enumerated(value = EnumType.STRING)
     private MeasureType measureType;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "recipeId", cascade = CascadeType.ALL)
     @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<AssignedRecipe> assignedRecipe;

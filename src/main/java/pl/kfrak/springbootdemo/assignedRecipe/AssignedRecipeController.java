@@ -21,7 +21,7 @@ public class AssignedRecipeController {
     }
 
     @GetMapping(value = "/{dayId}")
-        public AssignedRecipe findRecipesForGivenDay (@PathVariable Integer dayId){
+        public AssignedRecipe findRecipesForGivenDayId (@PathVariable Integer dayId){
             return assignedRecipeService.findRecipesForGivenDay(dayId);
         }
     }

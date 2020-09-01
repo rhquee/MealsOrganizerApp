@@ -9,6 +9,6 @@ public interface AssignedRecipeRepository extends JpaRepository<AssignedRecipe, 
     //@Query(("select ar from assigned_recipe ar where ar.dayId = :dayId"))
    // AssignedRecipe findRecipesForGivenDay(@Param("dayId")Integer dayId);
 
-    AssignedRecipe findAssignedRecipeByDay(@Param("dayId")Integer dayId);
+    AssignedRecipe findAssignedRecipeByDayId(@Param("dayId")Integer dayId);
 
 }

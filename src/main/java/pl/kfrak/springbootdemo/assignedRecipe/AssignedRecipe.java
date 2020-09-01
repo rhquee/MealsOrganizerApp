@@ -1,5 +1,6 @@
 package pl.kfrak.springbootdemo.assignedRecipe;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import pl.kfrak.springbootdemo.recipe.Recipe;
 
 import javax.persistence.*;
@@ -16,11 +17,14 @@ public class AssignedRecipe implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id" /*insertable=false, updatable=false*/)
-    private Recipe recipe;
+    //@JsonIgnoreProperties(value = "recipe", allowSetters = true)
+    @JsonIgnoreProperties(value = "assigned_recipe", allowSetters = true)
+    private Recipe recipeId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "day_id", referencedColumnName = "day_id" /*insertable=false, updatable=false*/)
-    private Day day;
+    @JsonIgnoreProperties(value = "assigned_recipe", allowSetters = true)
+    private Day dayId;
 
     private String mealType;
 }

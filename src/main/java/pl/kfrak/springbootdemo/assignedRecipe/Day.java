@@ -14,7 +14,7 @@ import java.util.Set;
 public class Day implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO) //
     @Column(name = "day_id")
     private Integer id;
 
@@ -22,7 +22,7 @@ public class Day implements Serializable {
     //@Enumerated(value = EnumType.STRING)
     private String dayName;
 
-    @OneToMany(mappedBy = "day", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "dayId", cascade = CascadeType.ALL)
     @JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class)
     @JsonIdentityReference(alwaysAsId = true)
     private Set<AssignedRecipe> assignedRecipe;
